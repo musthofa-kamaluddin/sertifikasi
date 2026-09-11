@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peta Sertifikasi Keamanan Siber & IT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #14171c;
+    --bg-deep: #0f1216;
+    --surface: #1b2028;
+    --surface-2: #232a34;
+    --ink: #e7eaee;
+    --ink-soft: #9ba5b2;
+    --ink-faint: #626d7a;
+    --line: #262d37;
+    --line-strong: #38414e;
+    --accent: #ce9c55;
+    --accent-ink: #e9c089;
+    --accent-soft: #3a2e1b;
+    --teal: #4b9c8e;
+    --teal-soft: #17302b;
+    --danger: #c2705a;
+    --danger-soft: #3b2018;
+    --radius: 4px;
+  }
+
+  *{ box-sizing:border-box; }
+
+  html{ -webkit-text-size-adjust:100%; }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Space Grotesk', system-ui, sans-serif;
+    font-size:15px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .mono{ font-family:'JetBrains Mono', ui-monospace, monospace; }
+
+  a{ color:var(--accent-ink); text-decoration:none; border-bottom:1px solid transparent; }
+  a:hover{ border-bottom-color:currentColor; }
+
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
+
+  .wrap{
+    max-width:1320px;
+    margin:0 auto;
+    padding:48px 32px 80px;
+  }
+
+  /* ---------- header ---------- */
+
+  header{
+    border-bottom:1px solid var(--line);
+    padding-bottom:28px;
+    margin-bottom:28px;
+  }
+
+  .mast{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:40px;
+    flex-wrap:wrap;
+  }
+
+  .mast h1{
+    font-size:clamp(26px, 3.4vw, 34px);
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0 0 12px;
+    max-width:20ch;
+  }
+
+  .lede{
+    max-width:62ch;
+    color:var(--ink-soft);
+    font-size:15px;
+    margin:0;
+  }
+
+  .lede strong{ color:var(--ink); font-weight:500; }
+
+  .meta-panel{
+    flex-shrink:0;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:10px;
+    min-width:220px;
+  }
+
+  .kurs-badge{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 14px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+  }
+
+  .kurs-refresh-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:26px;
+    height:26px;
+    border:1px solid var(--line-strong);
+    background:transparent;
+    border-radius:50%;
+    color:var(--ink-soft);
+    cursor:pointer;
+    flex-shrink:0;
+    padding:0;
+    transition:color .15s ease, border-color .15s ease;
+  }
+
+  .kurs-refresh-btn:hover{ color:var(--accent-ink); border-color:var(--accent); }
+  .kurs-refresh-btn svg{ width:14px; height:14px; display:block; }
+  .kurs-refresh-btn.spinning svg{ animation:spin .7s linear infinite; }
+
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+
+  .kurs-text{ display:flex; flex-direction:column; gap:2px; text-align:right; }
+  .kurs-value{ font-size:13px; white-space:nowrap; }
+  .kurs-value .rate-num{ color:var(--accent-ink); }
+  .kurs-note{ font-size:11px; color:var(--ink-faint); }
+  .kurs-note.is-msg{ color:var(--accent-ink); }
+
+  .meta-line{ font-size:12px; color:var(--ink-faint); text-align:right; }
+
+  /* ---------- legend ---------- */
+
+  .legend{
+    display:flex;
+    gap:0;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    background:var(--surface);
+    margin-bottom:24px;
+    flex-wrap:wrap;
+  }
+
+  .legend-group{
+    flex:1;
+    min-width:220px;
+    padding:16px 20px;
+    border-left:1px solid var(--line);
+  }
+
+  .legend-group:first-child{ border-left:none; }
+
+  .legend-group h3{
+    margin:0 0 10px;
+    font-size:12px;
+    font-weight:600;
+    color:var(--ink-soft);
+  }
+
+  .legend-row{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    padding:3px 0;
+  }
+
+  .legend-row .tag{
+    flex-shrink:0;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    color:var(--ink);
+    min-width:52px;
+  }
+
+  .legend-note{
+    padding:14px 20px;
+    border-top:1px solid var(--line);
+    font-size:12px;
+    color:var(--ink-faint);
+    flex-basis:100%;
+  }
+
+  /* ---------- controls ---------- */
+
+  .controls{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    align-items:center;
+    margin-bottom:16px;
+  }
+
+  .search-field{
+    position:relative;
+    flex:1;
+    min-width:220px;
+  }
+
+  .search-field svg{
+    position:absolute;
+    left:12px;
+    top:50%;
+    transform:translateY(-50%);
+    width:15px;
+    height:15px;
+    color:var(--ink-faint);
+    pointer-events:none;
+  }
+
+  .search-field input{
+    width:100%;
+    padding:10px 12px 10px 36px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    color:var(--ink);
+    font-family:inherit;
+    font-size:14px;
+  }
+
+  .search-field input::placeholder{ color:var(--ink-faint); }
+  .search-field input:focus{ border-color:var(--accent); }
+
+  select{
+    padding:10px 12px;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    color:var(--ink);
+    font-family:inherit;
+    font-size:13.5px;
+    cursor:pointer;
+  }
+
+  select:focus{ border-color:var(--accent); }
+
+  .reset-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:10px 14px;
+    background:transparent;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    color:var(--ink-soft);
+    font-family:inherit;
+    font-size:13.5px;
+    cursor:pointer;
+  }
+
+  .reset-btn:hover{ color:var(--ink); border-color:var(--line-strong); }
+  .reset-btn svg{ width:14px; height:14px; }
+
+  .count-tag{
+    font-size:12.5px;
+    color:var(--ink-faint);
+    white-space:nowrap;
+    margin-left:auto;
+  }
+
+  .count-tag b{ color:var(--ink); font-weight:600; }
+
+  /* ---------- table ---------- */
+
+  .table-shell{
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:auto;
+    background:var(--surface);
+  }
+
+  table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:1180px;
+  }
+
+  thead th{
+    position:sticky;
+    top:0;
+    z-index:2;
+    background:var(--bg-deep);
+    color:var(--ink-soft);
+    text-align:left;
+    padding:12px 14px;
+    font-size:12px;
+    font-weight:500;
+    font-family:'JetBrains Mono', monospace;
+    border-bottom:1px solid var(--line-strong);
+    white-space:nowrap;
+    cursor:pointer;
+    user-select:none;
+  }
+
+  thead th:first-child{
+    position:sticky;
+    left:0;
+    z-index:3;
+  }
+
+  thead th:hover{ color:var(--ink); }
+  thead th.sorted{ color:var(--accent-ink); }
+
+  thead th .th-inner{
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+
+  thead th .th-inner svg{ width:12px; height:12px; flex-shrink:0; opacity:.6; }
+  thead th.sorted .th-inner svg{ opacity:1; }
+
+  tbody td{
+    padding:13px 14px;
+    border-bottom:1px solid var(--line);
+    font-size:13.5px;
+    vertical-align:top;
+    color:var(--ink-soft);
+  }
+
+  tbody tr:hover td{ background:var(--surface-2); }
+
+  tbody td:first-child{
+    position:sticky;
+    left:0;
+    background:var(--surface);
+    z-index:1;
+  }
+
+  tbody tr:hover td:first-child{ background:var(--surface-2); }
+
+  td.name-cell{ color:var(--ink); font-weight:500; min-width:230px; }
+  td.name-cell .provider{ display:block; font-size:11.5px; color:var(--ink-faint); font-weight:400; margin-top:2px; }
+
+  td.mono{ font-family:'JetBrains Mono', monospace; font-size:12.5px; white-space:nowrap; }
+
+  .tier-tag{
+    display:inline-block;
+    padding:3px 8px;
+    border-radius:2px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    border-left:2px solid;
+  }
+
+  .tier-1{ border-color:var(--teal); background:var(--teal-soft); color:#9fd3c8; }
+  .tier-2{ border-color:var(--accent); background:var(--accent-soft); color:var(--accent-ink); }
+  .tier-3{ border-color:var(--danger); background:var(--danger-soft); color:#e3a795; }
+
+  .rank-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:24px;
+    height:24px;
+    border-radius:50%;
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    font-weight:600;
+    border:1px solid;
+    cursor:pointer;
+    transition:filter .15s ease;
+  }
+
+  .rank-badge:hover{ filter:brightness(1.2); }
+
+  .rank-popover{
+    position:fixed;
+    z-index:50;
+    width:290px;
+    background:var(--surface-2);
+    border:1px solid var(--line-strong);
+    border-radius:var(--radius);
+    padding:14px 16px;
+    box-shadow:0 10px 28px rgba(0,0,0,.5);
+    display:none;
+  }
+
+  .rank-popover.open{ display:block; }
+
+  .rank-popover-head{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    margin-bottom:12px;
+  }
+
+  .rank-popover-title{
+    flex:1;
+    font-size:12.5px;
+    color:var(--ink);
+    font-weight:500;
+    line-height:1.35;
+    padding-top:2px;
+  }
+
+  .rank-popover-close{
+    flex-shrink:0;
+    background:none;
+    border:none;
+    color:var(--ink-faint);
+    cursor:pointer;
+    padding:2px;
+    display:flex;
+  }
+
+  .rank-popover-close:hover{ color:var(--ink); }
+  .rank-popover-close svg{ width:14px; height:14px; }
+
+  .stat-row{ display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+  .stat-label{ font-size:10.5px; color:var(--ink-soft); width:88px; flex-shrink:0; font-family:'JetBrains Mono', monospace; }
+  .stat-track{ flex:1; height:5px; background:var(--line); border-radius:3px; overflow:hidden; }
+  .stat-fill{ height:100%; border-radius:3px; }
+  .stat-num{ font-size:10.5px; color:var(--ink-faint); width:30px; text-align:right; font-family:'JetBrains Mono', monospace; }
+
+  .rank-popover-reasons{
+    margin:10px 0 0;
+    padding-left:16px;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+
+  .rank-popover-reasons li{ margin-bottom:4px; }
+  .rank-popover-reasons li::marker{ color:var(--ink-faint); }
+
+  .gauge{ display:flex; gap:3px; align-items:center; }
+  .gauge span{ width:10px; height:6px; border-radius:1px; background:var(--line-strong); }
+  .gauge span.on{ background:var(--accent); }
+
+  .field-cell{ display:flex; align-items:center; gap:7px; white-space:nowrap; }
+  .field-dot{ width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+
+  .src-link{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    color:var(--accent-ink);
+    font-size:12.5px;
+    white-space:nowrap;
+  }
+
+  .src-link svg{ width:12px; height:12px; }
+
+  .renewal-note{ display:block; font-size:11px; color:var(--ink-faint); margin-top:2px; }
+
+  .empty-row td{ text-align:center; padding:48px 0; color:var(--ink-faint); }
+
+  /* ---------- footer ---------- */
+
+  footer{
+    margin-top:32px;
+    padding-top:20px;
+    border-top:1px solid var(--line);
+    font-size:12px;
+    color:var(--ink-faint);
+    max-width:80ch;
+  }
+
+  @media (max-width: 860px){
+    .wrap{ padding:32px 18px 56px; }
+    .mast{ flex-direction:column; }
+    .meta-panel{ align-items:flex-start; width:100%; }
+    .kurs-text{ text-align:left; }
+    .meta-line{ text-align:left; }
+    .legend-group{ min-width:100%; border-left:none; border-top:1px solid var(--line); }
+    .legend-group:first-child{ border-top:none; }
+    .count-tag{ margin-left:0; width:100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="mast">
+      <div>
+        <h1>Peta Sertifikasi Keamanan Siber & IT</h1>
+        <p class="lede">Kumpulan sertifikasi nasional dan internasional di bidang IT dan keamanan siber, buat kamu yang baru mulai belajar sampai yang udah kerja di industri. Ada level kesulitan, kisaran biaya, provider, target peran, prasyarat, dan masa berlaku. <strong>Klik judul kolom buat urutin.</strong></p>
+      </div>
+      <div class="meta-panel">
+        <div class="kurs-badge">
+          <button type="button" class="kurs-refresh-btn" id="kursRefreshBtn" aria-label="Perbarui kurs">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+          </button>
+          <div class="kurs-text">
+            <span class="kurs-value mono" id="kursValue">memuat kurs...</span>
+            <span class="kurs-note" id="kursNote">menghubungi exchangerate-api</span>
+          </div>
+        </div>
+        <span class="meta-line">Data disusun September 2026 &middot; <span id="totalCount">0</span> sertifikasi terdaftar</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="legend">
+    <div class="legend-group">
+      <h3>Level kesulitan</h3>
+      <div class="legend-row"><span class="tag">Level 1</span><span>pemula, belum ada dasar teknis apa pun</span></div>
+      <div class="legend-row"><span class="tag">Level 2</span><span>udah paham dasar jaringan atau sistem</span></div>
+      <div class="legend-row"><span class="tag">Level 3</span><span>punya pengalaman kerja atau lab mandiri</span></div>
+      <div class="legend-row"><span class="tag">Level 4</span><span>spesialis dengan jam terbang di satu bidang</span></div>
+      <div class="legend-row"><span class="tag">Level 5</span><span>pakar atau posisi kepemimpinan teknis</span></div>
+    </div>
+    <div class="legend-group">
+      <h3>Kategori</h3>
+      <div class="legend-row"><span class="tag mono">Fondasi</span><span>titik masuk, cocok buat mahasiswa awal</span></div>
+      <div class="legend-row"><span class="tag mono">Spesialisasi</span><span>fokus ke satu jalur teknis tertentu</span></div>
+      <div class="legend-row"><span class="tag mono">Kepemimpinan</span><span>arah manajerial, audit, atau GRC</span></div>
+    </div>
+    <div class="legend-group">
+      <h3>Peringkat</h3>
+      <div class="legend-row"><span class="tag mono">S</span><span>paling diakui industri, ROI karier tertinggi</span></div>
+      <div class="legend-row"><span class="tag mono">A</span><span>sangat dihargai, worth banget buat dikejar</span></div>
+      <div class="legend-row"><span class="tag mono">B</span><span>solid, bagus buat spesialisasi tertentu</span></div>
+      <div class="legend-row"><span class="tag mono">C</span><span>bagus buat mulai, tapi bukan tujuan akhir</span></div>
+      <div class="legend-row"><span class="tag mono">D</span><span>nilainya lebih administratif atau lokal</span></div>
+    </div>
+    <div class="legend-note">Harga USD mengikuti data terakhir yang tersedia dan bisa berubah sewaktu-waktu. Kolom Rupiah dihitung otomatis dari kurs live, jadi angkanya bisa beda tipis dari harga resmi. Peringkat S sampai D itu acuan umum berdasarkan pengakuan industri dan nilai buat karier, sifatnya subjektif dan bisa beda tergantung sumber. Selalu cek tautan sumber sebelum daftar.</div>
+  </div>
+
+  <div class="controls">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="searchInput" placeholder="Cari nama, provider, atau target peran...">
+    </div>
+    <select id="tierFilter"><option value="">Semua kategori</option></select>
+    <select id="rankFilter"><option value="">Semua peringkat</option></select>
+    <select id="levelFilter"><option value="">Semua level</option></select>
+    <select id="fieldFilter"><option value="">Semua bidang</option></select>
+    <button type="button" class="reset-btn" id="resetBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+      Reset filter
+    </button>
+    <span class="count-tag">Nampilin <b id="shownCount">0</b> dari <b id="fullCount">0</b></span>
+  </div>
+
+  <div class="table-shell">
+    <table>
+      <thead>
+        <tr>
+          <th data-key="name" data-type="string"><span class="th-inner">Sertifikasi<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg></span></th>
+          <th data-key="tierRank" data-type="number"><span class="th-inner">Kategori<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg></span></th>
+          <th data-key="valueTierRank" data-type="number"><span class="th-inner">Peringkat<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg></span></th>
+          <th data-key="level" data-type="number"><span class="th-inner">Level<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg></span></th>
+          <th data-key="region" data-type="string"><span class="th-inner">Cakupan<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg></span></th>
+          <th data-key="field" data-type="string"><span class="th-inner">Bidang<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg></span></th>
+          <th data-key="priceUsdSort" data-type="number"><span class="th-inner">Harga (USD)<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg></span></th>
+          <th data-key="priceUsdSort" data-type="number"><span class="th-inner">Harga (IDR, live)<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg></span></th>
+          <th data-key="role" data-type="string"><span class="th-inner">Target peran<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg></span></th>
+          <th data-key="prereq" data-type="string"><span class="th-inner">Prasyarat<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg></span></th>
+          <th data-key="validityYears" data-type="number"><span class="th-inner">Masa berlaku<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 9l4-4 4 4M8 15l4 4 4-4"/></svg></span></th>
+          <th data-key="none" data-type="string"><span class="th-inner">Sumber</span></th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+
+  <footer>
+    Dibuat sebagai referensi ringkas oleh UKM Cyber Security ITS, bukan nasihat karier resmi. Detail biaya, prasyarat, dan kebijakan perpanjangan berubah dari waktu ke waktu. Selalu verifikasi ke situs resmi masing-masing provider sebelum mendaftar atau membayar. Kurs Rupiah dipasok oleh ExchangeRate-API dan diperbarui secara berkala di sisi klien.
+  </footer>
+
+</div>
+
+<script>
+(function(){
+
+  const ICONS = {
+    link: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>',
+    x: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>'
+  };
+
+  const FIELD_COLORS = {
+    'Fondasi IT': '#8891a0',
+    'Jaringan': '#4b9c8e',
+    'Keamanan Umum': '#ce9c55',
+    'Ofensif (Pentest/Red Team)': '#c2705a',
+    'Defensif (Blue Team/SOC)': '#5b8fc4',
+    'Forensik Digital': '#9b82c9',
+    'Manajemen & GRC': '#c9a544',
+    'Audit': '#8b9788',
+    'Keamanan Cloud': '#4fa69b',
+    'Arsitektur Keamanan': '#c98a5c'
+  };
+
+  const TIER_LABELS = { 1: 'Fondasi', 2: 'Spesialisasi', 3: 'Kepemimpinan' };
+  const TIER_CLASS = { 1: 'tier-1', 2: 'tier-2', 3: 'tier-3' };
+
+  const RANK_META = {
+    S: { color:'#f0c987', bg:'#3a2e1b' },
+    A: { color:'#9fd3c8', bg:'#17302b' },
+    B: { color:'#a9c4e8', bg:'#1c2a38' },
+    C: { color:'#c7cdd6', bg:'#232a34' },
+    D: { color:'#e3a795', bg:'#3b2018' }
+  };
+
+  const DATA = [
+    { name:'CompTIA A+', provider:'CompTIA', tierRank:1, valueTier:'C', valueTierRank:2, stats:{recognition:5,difficulty:3,career:4,demand:6}, reasons:['Sertifikasi entry-level paling umum buat masuk dunia IT support.','Materinya masih dasar banget, belum menyentuh keamanan siber secara khusus.'], level:1, region:'Internasional', field:'Fondasi IT', priceUsdSort:512, priceUsd:'≈ 512 (2 ujian)', role:'IT Support Specialist, Help Desk Technician', prereq:'Tidak ada', validityYears:3, validity:'3 tahun', renewal:'Perlu CEU atau ujian ulang', source:'https://www.comptia.org/certifications/a' },
+    { name:'CompTIA Network+', provider:'CompTIA', tierRank:1, valueTier:'C', valueTierRank:2, stats:{recognition:5,difficulty:4,career:4,demand:6}, reasons:['Modal dasar jaringan yang kuat sebelum ambil sertifikasi keamanan.','Belum cukup buat kerja spesifik di posisi security.'], level:1, region:'Internasional', field:'Jaringan', priceUsdSort:358, priceUsd:'≈ 358', role:'Network Administrator, NOC Technician', prereq:'Disarankan CompTIA A+', validityYears:3, validity:'3 tahun', renewal:'Perlu CEU atau ujian ulang', source:'https://www.comptia.org/certifications/network' },
+    { name:'CompTIA Security+', provider:'CompTIA', tierRank:1, valueTier:'A', valueTierRank:4, stats:{recognition:8,difficulty:6,career:8,demand:9}, reasons:['Jadi baseline wajib buat banyak posisi security junior sampai menengah, termasuk syarat DoD 8570 di AS.','Materinya luas tapi belum terlalu dalam di satu bidang.'], level:2, region:'Internasional', field:'Keamanan Umum', priceUsdSort:404, priceUsd:'≈ 404', role:'Junior Security Analyst, SOC Analyst L1', prereq:'Disarankan Network+ dan 2 tahun pengalaman IT', validityYears:3, validity:'3 tahun', renewal:'Perlu CEU atau ujian ulang', source:'https://www.comptia.org/certifications/security' },
+    { name:'ISC2 Certified in Cybersecurity (CC)', provider:'ISC2', tierRank:1, valueTier:'D', valueTierRank:1, stats:{recognition:4,difficulty:2,career:3,demand:5}, reasons:['Bagus buat validasi awal minat di keamanan siber, biayanya murah bahkan sering gratis.','Belum banyak dilirik recruiter buat posisi teknis beneran.'], level:1, region:'Internasional', field:'Keamanan Umum', priceUsdSort:0, priceUsd:'Gratis (promo) / 199 (reguler)', role:'Entry Level Security Analyst', prereq:'Tidak ada', validityYears:3, validity:'3 tahun', renewal:'Butuh CPE tahunan', source:'https://www.isc2.org/certifications/cc' },
+    { name:'CompTIA CySA+', provider:'CompTIA', tierRank:2, valueTier:'B', valueTierRank:3, stats:{recognition:6,difficulty:6,career:6,demand:7}, reasons:['Fokus analisis ancaman dan operasi SOC, relevan buat posisi blue team junior.','Kalah pamor dibanding GCIH atau sertifikasi SANS lainnya.'], level:2, region:'Internasional', field:'Defensif (Blue Team/SOC)', priceUsdSort:404, priceUsd:'≈ 404', role:'SOC Analyst L2, Threat Intelligence Analyst', prereq:'Disarankan Security+ dan pengalaman 3 sampai 4 tahun', validityYears:3, validity:'3 tahun', renewal:'Perlu CEU atau ujian ulang', source:'https://www.comptia.org/certifications/cybersecurity-analyst' },
+    { name:'CompTIA PenTest+', provider:'CompTIA', tierRank:2, valueTier:'B', valueTierRank:3, stats:{recognition:6,difficulty:6,career:6,demand:6}, reasons:['Ngenalin metodologi pentest secara terstruktur.','Masih lebih teori dibanding sertifikasi hands-on kayak OSCP.'], level:2, region:'Internasional', field:'Ofensif (Pentest/Red Team)', priceUsdSort:404, priceUsd:'≈ 404', role:'Junior Penetration Tester, Vulnerability Analyst', prereq:'Disarankan Security+ dan pengalaman 3 sampai 4 tahun', validityYears:3, validity:'3 tahun', renewal:'Perlu CEU atau ujian ulang', source:'https://www.comptia.org/certifications/pentest' },
+    { name:'Certified Ethical Hacker (CEH)', provider:'EC-Council', tierRank:2, valueTier:'B', valueTierRank:3, stats:{recognition:7,difficulty:5,career:6,demand:7}, reasons:['Namanya paling dikenal HR dan sering jadi syarat administratif tender atau proyek.','Sering dikritik praktisi karena lebih ke hafalan ketimbang skill praktik.'], level:2, region:'Internasional', field:'Ofensif (Pentest/Red Team)', priceUsdSort:1199, priceUsd:'≈ 950–1.199', role:'Penetration Tester, Security Consultant', prereq:'Disarankan 2 tahun pengalaman keamanan', validityYears:3, validity:'3 tahun', renewal:'Butuh EC-Council Continuing Education (ECE)', source:'https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh/' },
+    { name:'CEH (Practical)', provider:'EC-Council', tierRank:2, valueTier:'A', valueTierRank:4, stats:{recognition:7,difficulty:7,career:7,demand:6}, reasons:['Versi hands-on dari CEH, lebih kebukti skill beneran.','Tetap kalah gengsi dibanding OSCP di kalangan praktisi senior.'], level:3, region:'Internasional', field:'Ofensif (Pentest/Red Team)', priceUsdSort:550, priceUsd:'≈ 550', role:'Penetration Tester', prereq:'Direkomendasikan setelah lulus CEH teori', validityYears:3, validity:'3 tahun', renewal:'Butuh EC-Council Continuing Education (ECE)', source:'https://www.eccouncil.org/train-certify/certified-ethical-hacker-ceh-practical/' },
+    { name:'GIAC Security Essentials (GSEC)', provider:'GIAC / SANS', tierRank:2, valueTier:'A', valueTierRank:4, stats:{recognition:8,difficulty:6,career:7,demand:6}, reasons:['Kualitas materi SANS terkenal dalam dan solid.','Harganya cukup mahal buat level entry.'], level:2, region:'Internasional', field:'Keamanan Umum', priceUsdSort:979, priceUsd:'≈ 979–2.499', role:'Security Analyst, IT Auditor', prereq:'Tidak wajib, tapi butuh dasar TCP/IP yang kuat', validityYears:4, validity:'4 tahun', renewal:'Butuh 36 CPE', source:'https://www.giac.org/certifications/security-essentials-gsec/' },
+    { name:'GIAC Penetration Tester (GPEN)', provider:'GIAC / SANS', tierRank:2, valueTier:'S', valueTierRank:5, stats:{recognition:9,difficulty:8,career:8,demand:7}, reasons:['Dianggap setara atau mendekati OSCP buat jalur pentest, kurikulum SANS sangat dihormati.','Biaya tinggi jadi hambatan buat mahasiswa.'], level:3, region:'Internasional', field:'Ofensif (Pentest/Red Team)', priceUsdSort:979, priceUsd:'≈ 979–2.499', role:'Penetration Tester', prereq:'Pengalaman jaringan dan sistem operasi', validityYears:4, validity:'4 tahun', renewal:'Butuh 36 CPE', source:'https://www.giac.org/certifications/penetration-tester-gpen/' },
+    { name:'GIAC Certified Incident Handler (GCIH)', provider:'GIAC / SANS', tierRank:2, valueTier:'A', valueTierRank:4, stats:{recognition:8,difficulty:7,career:7,demand:7}, reasons:['Standar kuat buat posisi incident response.','Overlap materi lumayan sama CySA+ tapi levelnya lebih tinggi.'], level:3, region:'Internasional', field:'Defensif (Blue Team/SOC)', priceUsdSort:979, priceUsd:'≈ 979–2.499', role:'Incident Responder, SOC Analyst L2', prereq:'Pengalaman jaringan dan keamanan dasar', validityYears:4, validity:'4 tahun', renewal:'Butuh 36 CPE', source:'https://www.giac.org/certifications/certified-incident-handler-gcih/' },
+    { name:'GIAC Certified Forensic Analyst (GCFA)', provider:'GIAC / SANS', tierRank:2, valueTier:'S', valueTierRank:5, stats:{recognition:9,difficulty:8,career:8,demand:6}, reasons:['Jadi rujukan utama buat karier digital forensic dan DFIR.','Pasar kerja forensik lebih niche dibanding pentest atau SOC.'], level:4, region:'Internasional', field:'Forensik Digital', priceUsdSort:979, priceUsd:'≈ 979–2.499', role:'Digital Forensic Analyst, DFIR Consultant', prereq:'Pengalaman incident response atau forensik dasar', validityYears:4, validity:'4 tahun', renewal:'Butuh 36 CPE', source:'https://www.giac.org/certifications/certified-forensic-analyst-gcfa/' },
+    { name:'OSCP (PEN-200)', provider:'OffSec', tierRank:2, valueTier:'S', valueTierRank:5, stats:{recognition:10,difficulty:9,career:9,demand:9}, reasons:['Bukti praktik paling dipercaya buat rekruter pentest, harus benar-benar exploit sistem nyata.','Ujiannya berat, butuh persiapan lab yang serius.'], level:3, region:'Internasional', field:'Ofensif (Pentest/Red Team)', priceUsdSort:1649, priceUsd:'≈ 1.649 (lab 90 hari + 1x ujian)', role:'Penetration Tester, Red Teamer Junior', prereq:'Paham jaringan, Linux, dan scripting dasar', validityYears:0, validity:'Tanpa kedaluwarsa resmi', renewal:'OffSec mulai menerapkan skema CPE, cek kebijakan terbaru', source:'https://www.offsec.com/courses/pen-200/' },
+    { name:'OSWE (WEB-300)', provider:'OffSec', tierRank:2, valueTier:'S', valueTierRank:5, stats:{recognition:9,difficulty:9,career:8,demand:6}, reasons:['Standar tinggi buat spesialis keamanan aplikasi web, materinya source code review beneran.','Segmen pasarnya lebih sempit, khusus appsec.'], level:4, region:'Internasional', field:'Ofensif (Pentest/Red Team)', priceUsdSort:1649, priceUsd:'≈ 1.649 (lab 90 hari + 1x ujian)', role:'Application Security Engineer, Web Pentester Senior', prereq:'Disarankan OSCP dan paham source code review', validityYears:0, validity:'Tanpa kedaluwarsa resmi', renewal:'Mengikuti kebijakan OffSec terbaru', source:'https://www.offsec.com/courses/web-300/' },
+    { name:'OSEP (PEN-300)', provider:'OffSec', tierRank:2, valueTier:'S', valueTierRank:5, stats:{recognition:9,difficulty:10,career:8,demand:6}, reasons:['Level lanjutan buat red team operator, teknik evasion dan AD exploitation-nya mendalam.','Butuh dasar OSCP dulu, jadi jenjangnya panjang.'], level:4, region:'Internasional', field:'Ofensif (Pentest/Red Team)', priceUsdSort:1649, priceUsd:'≈ 1.649 (lab 90 hari + 1x ujian)', role:'Red Team Operator, Senior Penetration Tester', prereq:'Wajib OSCP', validityYears:0, validity:'Tanpa kedaluwarsa resmi', renewal:'Mengikuti kebijakan OffSec terbaru', source:'https://www.offsec.com/courses/pen-300/' },
+    { name:'eJPT: Junior Penetration Tester', provider:'INE / eLearnSecurity', tierRank:1, valueTier:'C', valueTierRank:2, stats:{recognition:5,difficulty:3,career:4,demand:6}, reasons:['Titik masuk yang murah dan ramah pemula buat belajar pentest hands-on.','Levelnya masih junior banget, belum cukup buat pasar kerja senior.'], level:2, region:'Internasional', field:'Ofensif (Pentest/Red Team)', priceUsdSort:200, priceUsd:'≈ 200', role:'Junior Penetration Tester', prereq:'Tidak ada, cocok buat pemula', validityYears:0, validity:'Tanpa kedaluwarsa', renewal:'Tidak perlu perpanjangan', source:'https://ine.com/learning/certifications/junior-penetration-tester' },
+    { name:'eCPPTv3', provider:'INE / eLearnSecurity', tierRank:2, valueTier:'B', valueTierRank:3, stats:{recognition:6,difficulty:6,career:6,demand:5}, reasons:['Harga terjangkau buat sertifikasi hands-on level menengah.','Kurang setenar OSCP di mata rekruter internasional.'], level:3, region:'Internasional', field:'Ofensif (Pentest/Red Team)', priceUsdSort:400, priceUsd:'≈ 400', role:'Penetration Tester', prereq:'Disarankan eJPT atau pengalaman setara', validityYears:0, validity:'Tanpa kedaluwarsa', renewal:'Tidak perlu perpanjangan', source:'https://ine.com/learning/certifications/certified-professional-penetration-tester' },
+    { name:'CRTP: Certified Red Team Professional', provider:'Altered Security', tierRank:2, valueTier:'A', valueTierRank:4, stats:{recognition:7,difficulty:7,career:7,demand:6}, reasons:['Spesialis banget buat Active Directory attack, sangat dihargai tim red team.','Fokusnya sempit cuma AD, perlu dilengkapi sertifikasi lain.'], level:3, region:'Internasional', field:'Ofensif (Pentest/Red Team)', priceUsdSort:249, priceUsd:'≈ 249 (lab + ujian)', role:'Red Teamer, Active Directory Pentester', prereq:'Paham dasar Active Directory dan Windows', validityYears:0, validity:'Tanpa kedaluwarsa', renewal:'Tidak perlu perpanjangan', source:'https://www.alteredsecurity.com/adlab' },
+    { name:'CISSP', provider:'ISC2', tierRank:3, valueTier:'S', valueTierRank:5, stats:{recognition:10,difficulty:8,career:10,demand:9}, reasons:['Gold standard buat posisi manajerial dan arsitek keamanan, banyak jadi syarat wajib job posting senior.','Butuh 5 tahun pengalaman kerja, jadi bukan buat pemula.'], level:4, region:'Internasional', field:'Manajemen & GRC', priceUsdSort:749, priceUsd:'≈ 749', role:'Security Manager, Security Architect', prereq:'Wajib 5 tahun pengalaman kerja relevan', validityYears:3, validity:'3 tahun', renewal:'Butuh 120 CPE', source:'https://www.isc2.org/certifications/cissp' },
+    { name:'CISSP-ISSAP (konsentrasi)', provider:'ISC2', tierRank:3, valueTier:'A', valueTierRank:4, stats:{recognition:7,difficulty:8,career:7,demand:4}, reasons:['Konsentrasi arsitektur yang memperdalam CISSP buat role architect senior.','Butuh CISSP aktif dulu, pasarnya niche.'], level:5, region:'Internasional', field:'Arsitektur Keamanan', priceUsdSort:599, priceUsd:'≈ 599', role:'Security Architect Senior', prereq:'Wajib punya CISSP aktif dan 2 tahun pengalaman arsitektur', validityYears:3, validity:'3 tahun', renewal:'Butuh CPE tambahan di luar CISSP', source:'https://www.isc2.org/certifications/cissp/cissp-concentrations/cissp-issap' },
+    { name:'SSCP', provider:'ISC2', tierRank:1, valueTier:'B', valueTierRank:3, stats:{recognition:6,difficulty:5,career:5,demand:5}, reasons:['Cocok buat posisi operasional atau administrator security tanpa syarat pengalaman seberat CISSP.','Kalah gengsi jauh dibanding CISSP.'], level:2, region:'Internasional', field:'Keamanan Umum', priceUsdSort:249, priceUsd:'≈ 249', role:'Security Administrator, Systems Engineer', prereq:'Disarankan 1 tahun pengalaman kerja relevan', validityYears:3, validity:'3 tahun', renewal:'Butuh 60 CPE', source:'https://www.isc2.org/certifications/sscp' },
+    { name:'CCSP', provider:'ISC2', tierRank:3, valueTier:'A', valueTierRank:4, stats:{recognition:8,difficulty:7,career:8,demand:8}, reasons:['Makin relevan seiring perusahaan migrasi ke cloud, fokus arsitektur keamanan cloud vendor-netral.','Butuh pengalaman 5 tahun, termasuk 3 tahun di security.'], level:4, region:'Internasional', field:'Keamanan Cloud', priceUsdSort:599, priceUsd:'≈ 599', role:'Cloud Security Engineer, Cloud Security Architect', prereq:'Wajib 5 tahun pengalaman IT, 3 tahun di antaranya keamanan', validityYears:3, validity:'3 tahun', renewal:'Butuh 90 CPE', source:'https://www.isc2.org/certifications/ccsp' },
+    { name:'CISM', provider:'ISACA', tierRank:3, valueTier:'A', valueTierRank:4, stats:{recognition:8,difficulty:6,career:8,demand:7}, reasons:['Rujukan kuat buat jalur manajemen keamanan informasi.','Lebih ke strategi dan governance, bukan teknis hands-on.'], level:4, region:'Internasional', field:'Manajemen & GRC', priceUsdSort:575, priceUsd:'≈ 575 (member) / 760 (non-member)', role:'Information Security Manager', prereq:'Wajib 5 tahun pengalaman manajemen keamanan', validityYears:3, validity:'3 tahun', renewal:'Butuh 120 CPE', source:'https://www.isaca.org/credentialing/cism' },
+    { name:'CISA', provider:'ISACA', tierRank:3, valueTier:'A', valueTierRank:4, stats:{recognition:8,difficulty:6,career:7,demand:6}, reasons:['Standar dihormati banget di dunia audit sistem informasi.','Segmen karier lebih ke audit atau compliance, bukan security teknis.'], level:4, region:'Internasional', field:'Audit', priceUsdSort:575, priceUsd:'≈ 575 (member) / 760 (non-member)', role:'IT Auditor, IT Compliance Manager', prereq:'Wajib 5 tahun pengalaman audit sistem informasi', validityYears:3, validity:'3 tahun', renewal:'Butuh 120 CPE', source:'https://www.isaca.org/credentialing/cisa' },
+    { name:'CRISC', provider:'ISACA', tierRank:3, valueTier:'B', valueTierRank:3, stats:{recognition:6,difficulty:6,career:6,demand:5}, reasons:['Pas buat spesialis manajemen risiko IT dan GRC.','Kurang dikenal dibanding CISM atau CISA.'], level:4, region:'Internasional', field:'Manajemen & GRC', priceUsdSort:575, priceUsd:'≈ 575 (member) / 760 (non-member)', role:'IT Risk Manager, GRC Analyst', prereq:'Wajib 3 tahun pengalaman manajemen risiko IT', validityYears:3, validity:'3 tahun', renewal:'Butuh 120 CPE', source:'https://www.isaca.org/credentialing/crisc' },
+    { name:'AWS Certified Security - Specialty', provider:'Amazon Web Services', tierRank:2, valueTier:'A', valueTierRank:4, stats:{recognition:8,difficulty:7,career:8,demand:8}, reasons:['Paling dicari kalau perusahaan pakai AWS sebagai cloud utama.','Cuma relevan buat ekosistem AWS, gak portable ke cloud lain.'], level:4, region:'Internasional', field:'Keamanan Cloud', priceUsdSort:300, priceUsd:'≈ 300', role:'Cloud Security Engineer (AWS)', prereq:'Disarankan pengalaman kerja dengan AWS dan keamanan', validityYears:3, validity:'3 tahun', renewal:'Ujian ulang atau kredit sertifikasi lain', source:'https://aws.amazon.com/certification/certified-security-specialty/' },
+    { name:'Microsoft Certified: Security Operations Analyst Associate (SC-200)', provider:'Microsoft', tierRank:2, valueTier:'B', valueTierRank:3, stats:{recognition:6,difficulty:5,career:6,demand:6}, reasons:['Relevan buat tim yang pakai Microsoft Defender dan Sentinel.','Scope-nya sempit, cuma ekosistem Microsoft.'], level:3, region:'Internasional', field:'Defensif (Blue Team/SOC)', priceUsdSort:165, priceUsd:'≈ 165', role:'SOC Analyst, Security Operations Analyst', prereq:'Disarankan paham Microsoft Defender dan Sentinel', validityYears:1, validity:'1 tahun', renewal:'Perpanjangan gratis via penilaian online', source:'https://learn.microsoft.com/en-us/credentials/certifications/security-operations-analyst/' },
+    { name:'Microsoft Certified: Azure Security Engineer Associate (AZ-500)', provider:'Microsoft', tierRank:2, valueTier:'B', valueTierRank:3, stats:{recognition:6,difficulty:6,career:6,demand:7}, reasons:['Dibutuhin buat role Azure security engineer.','Sama kayak SC-200, terbatas ke ekosistem Azure.'], level:3, region:'Internasional', field:'Keamanan Cloud', priceUsdSort:165, priceUsd:'≈ 165', role:'Azure Security Engineer', prereq:'Disarankan pengalaman administrasi Azure', validityYears:1, validity:'1 tahun', renewal:'Perpanjangan gratis via penilaian online', source:'https://learn.microsoft.com/en-us/credentials/certifications/azure-security-engineer/' },
+    { name:'Google Cloud Professional Cloud Security Engineer', provider:'Google Cloud', tierRank:2, valueTier:'B', valueTierRank:3, stats:{recognition:6,difficulty:6,career:6,demand:6}, reasons:['Versi GCP dari cloud security level associate.','Pasar GCP di Indonesia masih lebih kecil dibanding AWS atau Azure.'], level:4, region:'Internasional', field:'Keamanan Cloud', priceUsdSort:200, priceUsd:'≈ 200', role:'Cloud Security Engineer (GCP)', prereq:'Disarankan pengalaman GCP dan keamanan', validityYears:2, validity:'2 tahun', renewal:'Ujian ulang', source:'https://cloud.google.com/learn/certification/cloud-security-engineer' },
+    { name:'ISO/IEC 27001 Lead Auditor', provider:'PECB / BSI / lainnya', tierRank:3, valueTier:'B', valueTierRank:3, stats:{recognition:7,difficulty:5,career:6,demand:6}, reasons:['Diakui luas buat kebutuhan audit ISMS di perusahaan mana pun.','Lebih ke proses dan compliance, bukan skill teknis serangan atau pertahanan.'], level:4, region:'Internasional', field:'Audit', priceUsdSort:1500, priceUsd:'≈ 1.500–2.500 (kursus + ujian)', role:'ISMS Lead Auditor, Compliance Consultant', prereq:'Disarankan paham ISO 27001 dan pengalaman audit', validityYears:3, validity:'3 tahun (tergantung skema badan sertifikasi)', renewal:'Butuh bukti aktivitas audit berkelanjutan', source:'https://pecb.com/en/education-and-certification-for-individuals/iso-iec-27001' },
+    { name:'ISO/IEC 27001 Lead Implementer', provider:'PECB / BSI / lainnya', tierRank:3, valueTier:'B', valueTierRank:3, stats:{recognition:7,difficulty:5,career:6,demand:6}, reasons:['Berguna buat yang mau bangun ISMS dari nol di perusahaan.','Sama kayak Lead Auditor, lebih ke manajemen sistem, bukan teknis.'], level:3, region:'Internasional', field:'Manajemen & GRC', priceUsdSort:1500, priceUsd:'≈ 1.500–2.500 (kursus + ujian)', role:'ISMS Consultant, GRC Specialist', prereq:'Disarankan paham dasar keamanan informasi', validityYears:3, validity:'3 tahun (tergantung skema badan sertifikasi)', renewal:'Butuh bukti aktivitas implementasi berkelanjutan', source:'https://pecb.com/en/education-and-certification-for-individuals/iso-iec-27001' },
+    { name:'CHFI: Computer Hacking Forensic Investigator', provider:'EC-Council', tierRank:2, valueTier:'B', valueTierRank:3, stats:{recognition:6,difficulty:5,career:5,demand:5}, reasons:['Pengenalan solid ke proses forensik digital.','Kalah dalam dan kalah gengsi dibanding GCFA dari SANS.'], level:3, region:'Internasional', field:'Forensik Digital', priceUsdSort:1199, priceUsd:'≈ 1.199', role:'Digital Forensic Investigator', prereq:'Disarankan pengalaman keamanan atau IT dasar', validityYears:3, validity:'3 tahun', renewal:'Butuh EC-Council Continuing Education (ECE)', source:'https://www.eccouncil.org/train-certify/computer-hacking-forensic-investigator-chfi/' },
+    { name:'LPT Master: Licensed Penetration Tester', provider:'EC-Council', tierRank:2, valueTier:'A', valueTierRank:4, stats:{recognition:7,difficulty:8,career:7,demand:5}, reasons:['Sertifikasi hands-on tertinggi dari EC-Council, ujiannya berat dan real-world.','Kurang setenar OSCP secara global meski levelnya setara.'], level:5, region:'Internasional', field:'Ofensif (Pentest/Red Team)', priceUsdSort:2499, priceUsd:'≈ 2.499', role:'Senior Penetration Tester, Red Team Lead', prereq:'Disarankan CEH Practical dan pengalaman pentest nyata', validityYears:3, validity:'3 tahun', renewal:'Butuh EC-Council Continuing Education (ECE)', source:'https://www.eccouncil.org/train-certify/licensed-penetration-tester-lpt-master/' },
+    { name:'Cisco Certified Network Associate (CCNA)', provider:'Cisco', tierRank:1, valueTier:'B', valueTierRank:3, stats:{recognition:8,difficulty:5,career:6,demand:8}, reasons:['Standar networking paling luas dipakai, modal kuat sebelum masuk security jaringan.','Bukan sertifikasi security murni, lebih ke fondasi jaringan.'], level:1, region:'Internasional', field:'Jaringan', priceUsdSort:300, priceUsd:'≈ 300', role:'Network Engineer, NOC Engineer', prereq:'Tidak ada syarat resmi', validityYears:3, validity:'3 tahun', renewal:'Ujian ulang atau kredit pelatihan Cisco', source:'https://www.cisco.com/site/us/en/learn/training-certifications/certifications/associate/ccna/index.html' },
+    { name:'Sertifikasi Kompetensi Keamanan Siber (BNSP/LSP)', provider:'BNSP melalui LSP terkait', tierRank:1, valueTier:'D', valueTierRank:1, stats:{recognition:3,difficulty:2,career:3,demand:5}, reasons:['Berguna buat syarat administratif proyek pemerintah atau tender lokal.','Gak dikenal luas di industri internasional.'], level:1, region:'Nasional', field:'Keamanan Umum', priceUsdSort:0, priceUsd:'≈ 0–170 (setara, tergantung LSP dan skema)', role:'Entry Level Security Analyst, syarat administratif proyek pemerintah', prereq:'Bervariasi tergantung skema, umumnya minim atau tanpa syarat', validityYears:3, validity:'3 tahun (umum, tergantung skema LSP)', renewal:'Sertifikasi ulang melalui asesmen LSP', source:'https://www.bnsp.go.id/' },
+    { name:'Program Sertifikasi Kompetensi Siber Nasional', provider:'BSSN / Politeknik Siber dan Sandi Negara', tierRank:1, valueTier:'D', valueTierRank:1, stats:{recognition:3,difficulty:3,career:4,demand:4}, reasons:['Relevan banget kalau targetnya kerja di instansi pemerintah bidang siber.','Cakupannya sangat lokal, kurang portable ke industri swasta atau luar negeri.'], level:2, region:'Nasional', field:'Keamanan Umum', priceUsdSort:0, priceUsd:'Bervariasi (sering disubsidi instansi)', role:'Staf Keamanan Siber Instansi Pemerintah', prereq:'Bervariasi tergantung program dan jalur pendaftaran', validityYears:0, validity:'Bervariasi tergantung program', renewal:'Mengikuti kebijakan BSSN', source:'https://bssn.go.id/' }
+  ];
+
+  /* ---------- currency: live rate with caching + refresh cooldown ---------- */
+
+  const CURRENCY_API_KEY = '10f7f7546eabdf7ada04ab89';
+  const CURRENCY_ENDPOINT = 'https://v6.exchangerate-api.com/v6/' + CURRENCY_API_KEY + '/latest/USD';
+  const CURRENCY_CACHE_KEY = 'kurs_usd_idr_cache_v1';
+  const CACHE_TTL_MS = 6 * 60 * 60 * 1000;
+  const REFRESH_COOLDOWN_MS = 5 * 60 * 1000;
+  const FALLBACK_RATE = 15700;
+
+  let currentRate = FALLBACK_RATE;
+  let rateIsLive = false;
+
+  const kursValueEl = document.getElementById('kursValue');
+  const kursNoteEl = document.getElementById('kursNote');
+  const kursBtnEl = document.getElementById('kursRefreshBtn');
+
+  function readCache(){
+    try{
+      const raw = localStorage.getItem(CURRENCY_CACHE_KEY);
+      if(!raw) return null;
+      const parsed = JSON.parse(raw);
+      if(typeof parsed.rate !== 'number') return null;
+      return parsed;
+    }catch(e){ return null; }
+  }
+
+  function writeCache(patch){
+    try{
+      const current = readCache() || {};
+      localStorage.setItem(CURRENCY_CACHE_KEY, JSON.stringify(Object.assign({}, current, patch)));
+    }catch(e){ /* localStorage tidak tersedia, lanjut tanpa cache */ }
+  }
+
+  function relativeTimeId(ms){
+    const diff = Date.now() - ms;
+    const min = Math.floor(diff / 60000);
+    if(min < 1) return 'baru saja';
+    if(min < 60) return min + ' menit lalu';
+    const hr = Math.floor(min / 60);
+    if(hr < 24) return hr + ' jam lalu';
+    const day = Math.floor(hr / 24);
+    return day + ' hari lalu';
+  }
+
+  function paintBadge(msgOverride){
+    kursValueEl.innerHTML = '1 USD &asymp; <span class="rate-num">Rp ' + Math.round(currentRate).toLocaleString('id-ID') + '</span>';
+    if(msgOverride){
+      kursNoteEl.textContent = msgOverride;
+      kursNoteEl.classList.add('is-msg');
+      return;
+    }
+    kursNoteEl.classList.remove('is-msg');
+    const cache = readCache();
+    if(rateIsLive && cache && cache.fetchedAt){
+      kursNoteEl.textContent = 'diperbarui ' + relativeTimeId(cache.fetchedAt);
+    } else {
+      kursNoteEl.textContent = 'kurs cadangan, belum terhubung';
+    }
+  }
+
+  function setLoading(isLoading){
+    kursBtnEl.classList.toggle('spinning', isLoading);
+    kursBtnEl.disabled = isLoading;
+    if(isLoading){
+      kursValueEl.textContent = 'memuat kurs...';
+      kursNoteEl.textContent = 'menghubungi exchangerate-api';
+      kursNoteEl.classList.remove('is-msg');
+    }
+  }
+
+  async function fetchLiveRate(force){
+    const cache = readCache();
+    const now = Date.now();
+    const freshEnough = cache && cache.fetchedAt && (now - cache.fetchedAt) < CACHE_TTL_MS;
+    const inCooldown = cache && cache.lastAttemptAt && (now - cache.lastAttemptAt) < REFRESH_COOLDOWN_MS;
+
+    if(!force && freshEnough) return;
+
+    if(inCooldown){
+      const remainMin = Math.ceil((REFRESH_COOLDOWN_MS - (now - cache.lastAttemptAt)) / 60000);
+      if(force) paintBadge('tunggu ' + remainMin + ' menit lagi ya');
+      return;
+    }
+
+    setLoading(true);
+    writeCache({ lastAttemptAt: now });
+
+    try{
+      const res = await fetch(CURRENCY_ENDPOINT);
+      if(!res.ok) throw new Error('respons tidak ok');
+      const data = await res.json();
+      if(data && data.result === 'success' && data.conversion_rates && data.conversion_rates.IDR){
+        currentRate = data.conversion_rates.IDR;
+        rateIsLive = true;
+        writeCache({ rate: currentRate, fetchedAt: Date.now(), lastAttemptAt: Date.now() });
+        render();
+      } else {
+        throw new Error('format respons tidak sesuai');
+      }
+    }catch(err){
+      if(cache && cache.rate){
+        currentRate = cache.rate;
+        rateIsLive = true;
+      } else {
+        currentRate = FALLBACK_RATE;
+        rateIsLive = false;
+      }
+    }
+    setLoading(false);
+    paintBadge();
+  }
+
+  function initCurrency(){
+    const cache = readCache();
+    if(cache && cache.rate){
+      currentRate = cache.rate;
+      rateIsLive = true;
+    }
+    paintBadge();
+    fetchLiveRate(false);
+    kursBtnEl.addEventListener('click', function(){ fetchLiveRate(true); });
+  }
+
+  function formatRupiah(n){
+    if(n <= 0) return 'Rp 0';
+    if(n >= 1000000){
+      let juta = (n / 1000000).toFixed(1);
+      if(juta.endsWith('.0')) juta = juta.slice(0, -2);
+      juta = juta.replace('.', ',');
+      return 'Rp ' + juta + ' jt';
+    }
+    return 'Rp ' + Math.round(n).toLocaleString('id-ID');
+  }
+
+  function convertPriceToIdr(usdText, rate){
+    // Cuma angka di LUAR tanda kurung yang dianggap harga (dolar).
+    // Angka di DALAM kurung, misal "(2 ujian)" atau "(lab 90 hari)", itu
+    // keterangan jumlah/durasi, bukan harga, jadi dibiarkan apa adanya.
+    const parts = usdText.split(/(\([^)]*\))/g);
+    return parts.map(function(part){
+      if(part.charAt(0) === '(' && part.charAt(part.length - 1) === ')') return part;
+      if(!/\d/.test(part)) return part;
+      return part.replace(/\d{1,3}(?:\.\d{3})*/g, function(match){
+        const num = parseInt(match.replace(/\./g, ''), 10);
+        return formatRupiah(num * rate);
+      });
+    }).join('');
+  }
+
+  /* ---------- table rendering ---------- */
+
+  const tableBody = document.getElementById('tableBody');
+  const searchInput = document.getElementById('searchInput');
+  const tierFilter = document.getElementById('tierFilter');
+  const rankFilter = document.getElementById('rankFilter');
+  const levelFilter = document.getElementById('levelFilter');
+  const fieldFilter = document.getElementById('fieldFilter');
+  const resetBtn = document.getElementById('resetBtn');
+  const shownCountEl = document.getElementById('shownCount');
+  const fullCountEl = document.getElementById('fullCount');
+  const totalCountEl = document.getElementById('totalCount');
+
+  let sortState = { key: 'tierRank', dir: 1 };
+
+  function populateFilters(){
+    Object.entries(TIER_LABELS).forEach(function(entry){
+      const opt = document.createElement('option');
+      opt.value = entry[0];
+      opt.textContent = entry[1];
+      tierFilter.appendChild(opt);
+    });
+    ['S','A','B','C','D'].forEach(function(r){
+      const opt = document.createElement('option');
+      opt.value = r;
+      opt.textContent = 'Peringkat ' + r;
+      rankFilter.appendChild(opt);
+    });
+    const levels = [1,2,3,4,5];
+    levels.forEach(function(lv){
+      const opt = document.createElement('option');
+      opt.value = lv;
+      opt.textContent = 'Level ' + lv;
+      levelFilter.appendChild(opt);
+    });
+    const fields = Array.from(new Set(DATA.map(function(d){ return d.field; }))).sort();
+    fields.forEach(function(f){
+      const opt = document.createElement('option');
+      opt.value = f;
+      opt.textContent = f;
+      fieldFilter.appendChild(opt);
+    });
+  }
+
+  function gaugeHtml(level){
+    let html = '<div class="gauge">';
+    for(let i = 1; i <= 5; i++){
+      html += '<span class="' + (i <= level ? 'on' : '') + '"></span>';
+    }
+    html += '</div>';
+    return html;
+  }
+
+  function getFiltered(){
+    const q = searchInput.value.trim().toLowerCase();
+    const tier = tierFilter.value;
+    const rank = rankFilter.value;
+    const level = levelFilter.value;
+    const field = fieldFilter.value;
+
+    return DATA.filter(function(c){
+      if(tier && String(c.tierRank) !== tier) return false;
+      if(rank && c.valueTier !== rank) return false;
+      if(level && String(c.level) !== level) return false;
+      if(field && c.field !== field) return false;
+      if(q){
+        const hay = (c.name + ' ' + c.provider + ' ' + c.role + ' ' + c.field).toLowerCase();
+        if(hay.indexOf(q) === -1) return false;
+      }
+      return true;
+    });
+  }
+
+  function sortRows(rows){
+    const key = sortState.key;
+    const dir = sortState.dir;
+    if(key === 'none') return rows;
+    return rows.slice().sort(function(a, b){
+      const va = a[key];
+      const vb = b[key];
+      if(typeof va === 'string'){
+        return va.localeCompare(vb) * dir;
+      }
+      return (va - vb) * dir;
+    });
+  }
+
+  function render(){
+    closePopover();
+    const rows = sortRows(getFiltered());
+    tableBody.innerHTML = '';
+
+    if(rows.length === 0){
+      const tr = document.createElement('tr');
+      tr.className = 'empty-row';
+      tr.innerHTML = '<td colspan="12">Gak ada yang cocok. Coba ubah kata kunci atau filternya.</td>';
+      tableBody.appendChild(tr);
+    } else {
+      rows.forEach(function(c){
+        const tr = document.createElement('tr');
+        const dot = FIELD_COLORS[c.field] || '#626d7a';
+        const rankMeta = RANK_META[c.valueTier];
+        tr.innerHTML =
+          '<td class="name-cell">' + c.name + '<span class="provider">' + c.provider + '</span></td>' +
+          '<td><span class="tier-tag ' + TIER_CLASS[c.tierRank] + '">' + TIER_LABELS[c.tierRank] + '</span></td>' +
+          '<td><span class="rank-badge" data-name="' + c.name.replace(/"/g, '&quot;') + '" style="color:' + rankMeta.color + ';background:' + rankMeta.bg + ';border-color:' + rankMeta.color + '">' + c.valueTier + '</span></td>' +
+          '<td>' + gaugeHtml(c.level) + '</td>' +
+          '<td>' + c.region + '</td>' +
+          '<td><span class="field-cell"><span class="field-dot" style="background:' + dot + '"></span>' + c.field + '</span></td>' +
+          '<td class="mono">' + c.priceUsd + '</td>' +
+          '<td class="mono">' + convertPriceToIdr(c.priceUsd, currentRate) + '</td>' +
+          '<td>' + c.role + '</td>' +
+          '<td>' + c.prereq + '</td>' +
+          '<td>' + c.validity + (c.renewal ? '<span class="renewal-note">' + c.renewal + '</span>' : '') + '</td>' +
+          '<td><a class="src-link" href="' + c.source + '" target="_blank" rel="noopener">Buka ' + ICONS.link + '</a></td>';
+        tableBody.appendChild(tr);
+      });
+    }
+
+    shownCountEl.textContent = rows.length;
+    fullCountEl.textContent = DATA.length;
+    totalCountEl.textContent = DATA.length;
+
+    document.querySelectorAll('thead th').forEach(function(th){
+      th.classList.toggle('sorted', th.dataset.key === sortState.key);
+    });
+  }
+
+  document.querySelectorAll('thead th').forEach(function(th){
+    th.addEventListener('click', function(){
+      const key = th.dataset.key;
+      if(key === 'none') return;
+      if(sortState.key === key){
+        sortState.dir *= -1;
+      } else {
+        sortState.key = key;
+        sortState.dir = 1;
+      }
+      render();
+    });
+  });
+
+  searchInput.addEventListener('input', render);
+  tierFilter.addEventListener('change', render);
+  rankFilter.addEventListener('change', render);
+  levelFilter.addEventListener('change', render);
+  fieldFilter.addEventListener('change', render);
+  resetBtn.addEventListener('click', function(){
+    searchInput.value = '';
+    tierFilter.value = '';
+    rankFilter.value = '';
+    levelFilter.value = '';
+    fieldFilter.value = '';
+    sortState = { key: 'tierRank', dir: 1 };
+    render();
+  });
+
+  /* ---------- popover stat peringkat ---------- */
+
+  const rankPopoverEl = document.createElement('div');
+  rankPopoverEl.className = 'rank-popover';
+  rankPopoverEl.setAttribute('role', 'dialog');
+  document.body.appendChild(rankPopoverEl);
+
+  let activeRankName = null;
+
+  function closePopover(){
+    rankPopoverEl.classList.remove('open');
+    activeRankName = null;
+  }
+
+  function statRowHtml(label, value, color){
+    const pct = Math.max(0, Math.min(10, value)) * 10;
+    return '<div class="stat-row"><span class="stat-label">' + label + '</span>' +
+      '<div class="stat-track"><div class="stat-fill" style="width:' + pct + '%;background:' + color + '"></div></div>' +
+      '<span class="stat-num">' + value + '/10</span></div>';
+  }
+
+  function openPopover(badgeEl, cert){
+    const meta = RANK_META[cert.valueTier];
+    rankPopoverEl.innerHTML =
+      '<div class="rank-popover-head">' +
+        '<span class="rank-badge" style="cursor:default;color:' + meta.color + ';background:' + meta.bg + ';border-color:' + meta.color + '">' + cert.valueTier + '</span>' +
+        '<span class="rank-popover-title">' + cert.name + '</span>' +
+        '<button type="button" class="rank-popover-close" aria-label="Tutup">' + ICONS.x + '</button>' +
+      '</div>' +
+      statRowHtml('Pengakuan', cert.stats.recognition, meta.color) +
+      statRowHtml('Kesulitan', cert.stats.difficulty, meta.color) +
+      statRowHtml('Dampak karier', cert.stats.career, meta.color) +
+      statRowHtml('Permintaan', cert.stats.demand, meta.color) +
+      '<ul class="rank-popover-reasons"><li>' + cert.reasons[0] + '</li><li>' + cert.reasons[1] + '</li></ul>';
+
+    const rect = badgeEl.getBoundingClientRect();
+    const popW = 290;
+    const popH = rankPopoverEl.offsetHeight || 230;
+    let left = rect.left;
+    let top = rect.bottom + 8;
+    if(left + popW > window.innerWidth - 12) left = window.innerWidth - popW - 12;
+    if(top + popH > window.innerHeight - 12) top = rect.top - popH - 8;
+    rankPopoverEl.style.left = Math.max(12, left) + 'px';
+    rankPopoverEl.style.top = Math.max(12, top) + 'px';
+    rankPopoverEl.classList.add('open');
+    activeRankName = cert.name;
+
+    rankPopoverEl.querySelector('.rank-popover-close').addEventListener('click', closePopover);
+  }
+
+  tableBody.addEventListener('click', function(e){
+    const badge = e.target.closest('.rank-badge');
+    if(!badge) return;
+    const name = badge.dataset.name;
+    if(activeRankName === name){ closePopover(); return; }
+    const cert = DATA.find(function(d){ return d.name === name; });
+    if(cert) openPopover(badge, cert);
+  });
+
+  document.addEventListener('click', function(e){
+    if(!rankPopoverEl.classList.contains('open')) return;
+    if(rankPopoverEl.contains(e.target)) return;
+    if(e.target.closest('.rank-badge')) return;
+    closePopover();
+  });
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closePopover();
+  });
+
+  document.querySelector('.table-shell').addEventListener('scroll', closePopover);
+  window.addEventListener('scroll', closePopover);
+  window.addEventListener('resize', closePopover);
+
+  populateFilters();
+  initCurrency();
+  render();
+
+})();
+</script>
+
+</body>
+</html>
